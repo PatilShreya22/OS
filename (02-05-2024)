@@ -1,0 +1,210 @@
+//C program to implement linear search
+#include <stdio.h>
+#include<stdlib.h>
+void linearSearch(int num,int key,int arr[]){
+    int i;
+    for (i = 0; i < num ; i++)
+    {
+        if (key == arr[i] )
+        {
+            printf("element at index %d",i);
+            exit(0);
+        }
+    }
+        printf("element not found\n");
+}
+void main()
+{  
+
+    int num;
+    int i,  key;
+    
+    printf("Enter number of elements : ");
+    scanf("%d", &num);
+    int arr[num];
+    
+    printf("\nEnter all the elements:");
+    for (i = 0; i < num; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+    printf("\nEnter the key  to be searched: ");
+    scanf("%d", &key);
+
+    linearSearch(num,key,arr);
+    
+
+}
+
+OUTPUT:
+
+CASE1:
+Enter number of elements : 4
+Enter all the elements:78 95 62 32
+Enter the key  to be searched: 62
+element at index 2
+
+CASE2:
+Enter number of elements : 4
+Enter all the elements:786 45 23 96
+Enter the key  to be searched: 100
+element not found
+
+//C program to implement binary search
+#include <stdio.h>
+
+int binarySearch(int arr[], int l, int r, int x)
+{
+    while (l <= r) {
+        int m = l + (r - l) / 2;
+
+        if (arr[m] == x)
+            return m;
+
+        if (arr[m] < x)
+            l = m + 1;
+
+        else
+            r = m - 1;
+    }
+
+    return -1;
+}
+
+int main()
+{
+    int num;
+    int i, j, temp, x;
+
+    printf("Enter number of elements : ");
+    scanf("%d", &num);
+    int arr[num];
+
+    printf("\nEnter all the elements:");
+
+    for (i = 0; i < num; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("\nEnter the key  to be searched: ");
+    scanf("%d", &x);
+
+    // Bubble sort implementation
+    for (i = 0; i < num - 1; i++) {
+        for (j = 0; j < num - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+    
+    printf("\nSorted Array:");
+    for(i=0;i<num;i++){
+        printf("%d ",arr[i]);
+    }
+    printf("\n");
+    int result = binarySearch(arr, 0, num-1, x);
+    if(result==-1){
+        printf("\nElement is not present in array");
+    }
+    else{
+        printf("\nElement is present at index %d",result); 
+    }
+
+    return 0;
+}
+
+OUTPUT:
+
+CASE1:
+Enter number of elements : 4
+Enter all the elements:12 56 23 15
+Enter the key  to be searched: 56
+Sorted Array:12 15 23 56 
+Element is present at index 3
+
+CASE2:
+Enter number of elements : 4
+Enter all the elements:78 23 54 62
+Enter the key  to be searched: 100
+Sorted Array:23 54 62 78 
+Element is not present in array
+
+//C program to implement matrix multiplication
+#include <stdio.h>
+
+void multiplyMatrices(int mat1[][10], int mat2[][10], int r1, int c1, int r2, int c2) {
+    int res[r1][c2];
+    for (int i = 0; i < r1; i++) {
+        for (int j = 0; j < c2; j++) {
+            res[i][j] = 0;
+            for (int k = 0; k < c1; k++) {
+                res[i][j] += mat1[i][k] * mat2[k][j];
+            }
+        }
+    }
+    for (int i = 0; i < r1; i++) {
+        for (int j = 0; j < c2; j++) {
+            printf("%d ", res[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int r1, c1, r2, c2;
+    printf("Enter number of rows for First Matrix: ");
+    scanf("%d", &r1);
+    printf("Enter number of columns for First Matrix: ");
+    scanf("%d", &c1);
+    printf("Enter number of rows for Second Matrix: ");
+    scanf("%d", &r2);
+    printf("Enter number of columns for Second Matrix: ");
+    scanf("%d", &c2);
+    if (c1!= r2) {
+        printf("Matrices Can't be multiplied together\n");
+        return 0;
+    }
+    int mat1[r1][c1], mat2[r2][c2];
+    printf("Enter first matrix elements\n");
+    for (int i = 0; i < r1; i++) {
+        for (int j = 0; j < c1; j++) {
+            scanf("%d", &mat1[i][j]);
+        }
+    }
+    printf("Enter Second matrix elements\n");
+    for (int i = 0; i < r2; i++) {
+        for (int j = 0; j < c2; j++) {
+            scanf("%d", &mat2[i][j]);
+        }
+    }
+    printf("Multiplied matrix\n");
+    multiplyMatrices(mat1, mat2, r1, c1, r2, c2);
+    return 0;
+}
+
+OUTPUT:
+
+CASE1:
+Enter number of rows for First Matrix: 2
+Enter number of columns for First Matrix: 1
+Enter number of rows for Second Matrix: 1
+Enter number of columns for Second Matrix: 2
+Enter first matrix elements
+2
+5
+Enter Second matrix elements
+1 2
+Multiplied matrix
+2 4 
+0 0 
+
+CASE2:
+Enter number of rows for First Matrix: 2
+Enter number of columns for First Matrix: 3
+Enter number of rows for Second Matrix: 2
+Enter number of columns for Second Matrix: 3
+Matrices Can't be multiplied together
