@@ -1,0 +1,186 @@
+//C program to implement stack
+#include <stdio.h>
+#include<stdlib.h>
+#define MAX 10
+int stack[MAX],top=-1;
+
+void push(int item){
+    if(top==MAX-1){
+        printf("\nStack Overflow");
+        return;
+    }
+    stack[++top]=item;
+    printf("\n%d pushed to stack",item);
+}
+
+void pop(){
+    if(top<0){
+        printf("\nStack Underflow");
+        return;
+    }
+    int item=stack[top--];
+    printf("\n%d popped from stack",item);
+}
+
+void display(){
+    if(top<0){
+        printf("\nStack Empty");
+        return;
+    }
+    for( int i=top;i>=0;i--){
+        printf("%d\t",stack[i]);
+    }
+}
+void main(){
+    int choice,ele;
+    while(1){
+        printf("\n\nEnter the choice:\n 1.Push 2.Pop 3.Display 4.Exit: ");
+        scanf("%d",&choice);
+        switch(choice){
+            case 1: printf("\nEnter the element:");
+                    scanf("%d",&ele);
+                    push(ele);
+                    break;
+            case 2: pop();
+                    break;
+            case 3: display();
+                    break;
+            case 4: printf("\nExit");
+                    exit(0);
+        }
+    }
+}
+
+OUTPUT:
+Enter the choice:
+ 1.Push 2.Pop 3.Display 4.Exit: 1
+Enter the element:56
+56 pushed to stack
+
+Enter the choice:
+ 1.Push 2.Pop 3.Display 4.Exit: 1
+Enter the element:23
+23 pushed to stack
+
+Enter the choice:
+ 1.Push 2.Pop 3.Display 4.Exit: 3
+23      56
+
+Enter the choice:
+ 1.Push 2.Pop 3.Display 4.Exit: 2
+23 popped from stack
+
+Enter the choice:
+ 1.Push 2.Pop 3.Display 4.Exit: 2
+56 popped from stack
+
+Enter the choice:
+ 1.Push 2.Pop 3.Display 4.Exit: 2
+Stack Underflow
+
+Enter the choice:
+ 1.Push 2.Pop 3.Display 4.Exit: 3
+Stack Empty
+
+Enter the choice:
+ 1.Push 2.Pop 3.Display 4.Exit: 4
+Exit
+
+//C program to implement queue
+#include<stdio.h>
+#include<stdlib.h>
+#define MAX 10
+int queue[MAX],front=-1,rear=-1;
+
+void enqueue(int item){
+    if(rear==MAX-1){
+        printf("\nQueue Overflow");
+        return;
+    }
+    if(front==-1 && rear==-1){
+        front=0;
+    }
+    queue[++rear]=item;
+    printf("\n%d added to queue",item);
+}
+
+void deque(){
+    if(front==-1 && rear==-1){
+        printf("\nQueue Underflow");
+        return;
+    }
+    int item=queue[front];
+    if(front==rear){
+        front=-1;
+        rear=-1;
+    } else {
+        front = (front + 1) % MAX; // wrap around to the beginning if necessary
+    }
+    printf("\n%d deleted from queue",item);
+}
+
+void display(){
+    if(front==-1 && rear==-1){
+        printf("\nQueue Empty");
+        return;
+    }
+    int f=front,r=rear;
+    for(int i=f;i<=r;i++){
+        printf("%d\t",queue[i]);
+    }
+}
+
+void main(){
+    int choice,ele;
+    while(1){
+        printf("\n\nEnter the choice:\n 1.Enqueue 2.Dequeue 3.Display 4.Exit: ");
+        scanf("%d",&choice);
+        switch(choice){
+            case 1: printf("\nEnter the element:");
+                    scanf("%d",&ele);
+                    enqueue(ele);
+                    break;
+            case 2: deque();
+                    break;
+            case 3: display();
+                    break;
+            case 4: printf("\nExit");
+                    exit(0);
+        }
+    }
+}
+
+OUTPUT:
+Enter the choice:
+ 1.Enqueue 2.Dequeue 3.Display 4.Exit: 1
+Enter the element:56
+56 added to queue
+
+Enter the choice:
+ 1.Enqueue 2.Dequeue 3.Display 4.Exit: 1
+Enter the element:23
+23 added to queue
+
+Enter the choice:
+ 1.Enqueue 2.Dequeue 3.Display 4.Exit: 3
+56      23
+
+Enter the choice:
+ 1.Enqueue 2.Dequeue 3.Display 4.Exit: 2
+56 deleted from queue
+
+Enter the choice:
+ 1.Enqueue 2.Dequeue 3.Display 4.Exit: 2
+23 deleted from queue
+
+Enter the choice:
+ 1.Enqueue 2.Dequeue 3.Display 4.Exit: 2
+Queue Underflow
+
+Enter the choice:
+ 1.Enqueue 2.Dequeue 3.Display 4.Exit: 3
+Queue Empty
+
+Enter the choice:
+ 1.Enqueue 2.Dequeue 3.Display 4.Exit: 4
+Exit
